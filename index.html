@@ -2,19 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>opentrigger quickinstall</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <title>OpenTrigger quickinstall</title>
+		<style>
+			li code {width:10em;display:inline-block}
+		</style>
   </head>
   <body>
-    <pre id='code'></pre>
+		<h1>OpenTrigger quickinstall</h1>
+		<p>
+			For use with a clean setup of <a href='https://downloads.raspberrypi.org/raspbian_lite_latest'>Raspbian Jessie Lite</a>.</br>
+		</p>
+    <code id='code'></code><a id='link' href='setup.sh' style='display:none'>setup.sh</a>
+		<p>
+			Avalable <code>STAGE</code>s:
+			<ul>
+				<li><code>STAGE=production</code> Default setup.</li>
+				<li><code>STAGE=development</code> Includes dev dependencies (300MB+)</li>
+				<li><code>STAGE=lite</code> Bare minimum, a base for a custom setup.</li>
+			</ul>
+			For more information please got to <a href='http://opentrigger.com/'>opentrigger.com</a>.
+		</p>
   </body>
 	<script>
 		(function(){
+			"use strict";
 			var generateCode = function(){
-				var el = document.getElementById('code');
-				var url = window.location.toString().replace(/\/+$/,'');
-				el.innerHTML = 'wget -qO- ' + url + '/setup.sh | bash'
+				var code = document.getElementById('code');
+				var link = document.getElementById('link');
+				code.innerHTML = 'wget -qO- ' + link.href + ' | STAGE=production bash'
 			};
 			document.addEventListener("DOMContentLoaded", generateCode);
 		})();			

@@ -14,4 +14,9 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D
 echo "deb http://dl.bintray.com/ao/opentrigger jessie main" | sudo tee /etc/apt/sources.list.d/opentrigger.list
 
 apt-get update
-apt-get install -y opentrigger
+
+case "$STAGE" in
+	dev|development) apt-get install -y opentrigger-dev
+	prod|production|"") apt-get install -y opentrigger
+	lite) apt-get install -y opentrigger --no-install-recommends
+esac
