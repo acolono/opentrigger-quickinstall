@@ -1,1 +1,22 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>opentrigger quickinstall</title>
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+  <body>
+    <pre id='code'></pre>
+  </body>
+	<script>
+		(function(){
+			var generateCode = function(){
+				var el = document.getElementById('code');
+				var url = window.location.toString().replace(/\/+$/,'');
+				el.innerHTML = 'wget -qO- ' + url + '/setup.sh | bash'
+			};
+			document.addEventListener("DOMContentLoaded", generateCode);
+		})();			
+	</script>
+</html>
