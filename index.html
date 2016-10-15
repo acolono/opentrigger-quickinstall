@@ -12,7 +12,8 @@
 		<p>
 			For use with a clean setup of <a href='https://downloads.raspberrypi.org/raspbian_lite_latest'>Raspbian Jessie Lite</a>.</br>
 		</p>
-    <code id='code'></code><a id='link' href='setup.sh' style='display:none'>setup.sh</a>
+		<code id='code'>wget -qO- https://get.opentrigger.com/setup.sh | STAGE=production bash</code>
+		<a id='link' href='setup.sh' style='display:none'>setup.sh</a>
 		<p>
 			Avalable <code>STAGE</code>s:
 			<ul>
@@ -29,7 +30,8 @@
 			var generateCode = function(){
 				var code = document.getElementById('code');
 				var link = document.getElementById('link');
-				code.innerHTML = 'wget -qO- ' + link.href + ' | STAGE=production bash'
+				var html = code.innerHTML.toString();
+				code.innerHTML = html.replace(/http[^\s]+/, link.href);// = 'wget -qO- ' + link.href + ' | STAGE=production bash'
 			};
 			document.addEventListener("DOMContentLoaded", generateCode);
 		})();			
