@@ -23,16 +23,33 @@ aptinstall (){
 	sudo apt-get install -y -o Dpkg::Options::="--force-confnew" $*
 }
 
+enablenodered (){
+	sudo systemctl enable nodered.service
+}
+
+askforreboot (){
+	echo "Your raspberry has to be disconnected from the power source to finish installation."
+	read -p "Shutdown now (y/n)? " -n 1 -r
+	echo    # (optional) move to a new line
+	if [[ ! $REPLY =~ ^[Yy]$ ]]
+	then
+		echo "Some services will not be available..."
+	else
+		sudo poweroff
+	fi
+}
+
 case "$STAGE" in
 	dev|development) 
 		aptinstall opentrigger-dev
+		enablenodered
 		;;
 	lite) 
-		aptinstall opentrigger --no-install-recommends
+		echo "available packages:"
+		apt-cache pkgnames | grep '^opentrigger'
 		;;
 	prod|production|*) 
 		aptinstall opentrigger
+		enablenodered
 		;;
 esac
-
-sudo reboot
