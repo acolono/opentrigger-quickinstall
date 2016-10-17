@@ -19,15 +19,19 @@ echo "deb http://dl.bintray.com/ao/opentrigger jessie main" | sudo tee /etc/apt/
 sudo apt-get update
 sudo apt-get -y dist-upgrade
 
+aptinstall (){
+	sudo apt-get install -y -o Dpkg::Options::="--force-confnew" $*
+}
+
 case "$STAGE" in
 	dev|development) 
-		sudo apt-get install -y opentrigger-dev
+		aptinstall opentrigger-dev
 		;;
 	lite) 
-		sudo apt-get install -y opentrigger --no-install-recommends
+		aptinstall opentrigger --no-install-recommends
 		;;
 	prod|production|*) 
-		sudo apt-get install -y opentrigger
+		aptinstall opentrigger
 		;;
 esac
 
