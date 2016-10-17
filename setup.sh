@@ -1,6 +1,7 @@
 #!/bin/bash
 
-## wget -qO- https://piccaso.github.io/opentrigger/setup.sh | bash
+## wget -qO- https://acolono.github.io/opentrigger-quickinstall/setup.sh | bash
+## wget -qO- https://get.opentrigger.com/setup.sh | bash
 
 set -e
 
@@ -23,3 +24,5 @@ case "$STAGE" in
 	prod|production|"") sudo apt-get install -y opentrigger
 	lite) sudo apt-get install -y opentrigger --no-install-recommends
 esac
+
+sudo reboot
