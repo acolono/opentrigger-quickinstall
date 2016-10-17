@@ -20,9 +20,15 @@ sudo apt-get update
 sudo apt-get -y dist-upgrade
 
 case "$STAGE" in
-	dev|development) sudo apt-get install -y opentrigger-dev
-	prod|production|"") sudo apt-get install -y opentrigger
-	lite) sudo apt-get install -y opentrigger --no-install-recommends
+	dev|development) 
+		sudo apt-get install -y opentrigger-dev
+		;;
+	lite) 
+		sudo apt-get install -y opentrigger --no-install-recommends
+		;;
+	prod|production|*) 
+		sudo apt-get install -y opentrigger
+		;;
 esac
 
 sudo reboot
