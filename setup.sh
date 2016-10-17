@@ -27,24 +27,15 @@ enablenodered (){
 	sudo systemctl enable nodered.service
 }
 
-askforreboot (){
-	unset DEBIAN_FRONTEND
-	echo "Your raspberry has to be disconnected from the power source to finish installation."
-	read -p "Shutdown now (y/n)? " -n 1 -r
-	echo    # (optional) move to a new line
-	if [[ ! $REPLY =~ ^[Yy]$ ]]
-	then
-		echo "Some services will not be available..."
-	else
-		sudo poweroff
-	fi
+shutitdown (){
+	sudo poweroff
 }
 
 case "$STAGE" in
 	dev|development) 
 		aptinstall opentrigger-dev
 		enablenodered
-		askforreboot
+		shutitdown
 		;;
 	lite) 
 		echo "available packages:"
@@ -53,6 +44,6 @@ case "$STAGE" in
 	prod|production|*) 
 		aptinstall opentrigger
 		enablenodered
-		askforreboot
+		shutitdown
 		;;
 esac
