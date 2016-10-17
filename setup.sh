@@ -43,6 +43,7 @@ case "$STAGE" in
 	dev|development) 
 		aptinstall opentrigger-dev
 		enablenodered
+		askforreboot
 		;;
 	lite) 
 		echo "available packages:"
@@ -51,5 +52,6 @@ case "$STAGE" in
 	prod|production|*) 
 		aptinstall opentrigger
 		enablenodered
+		askforreboot
 		;;
 esac
