@@ -2,6 +2,8 @@
 
 ## wget -qO- https://piccaso.github.io/opentrigger/setup.sh | bash
 
+set -e
+
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -13,10 +15,11 @@ wget -qO- http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key | sudo apt-key
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 echo "deb http://dl.bintray.com/ao/opentrigger jessie main" | sudo tee /etc/apt/sources.list.d/opentrigger.list
 
-apt-get update
+sudo apt-get update
+sudo apt-get -y dist-upgrade
 
 case "$STAGE" in
-	dev|development) apt-get install -y opentrigger-dev
-	prod|production|"") apt-get install -y opentrigger
-	lite) apt-get install -y opentrigger --no-install-recommends
+	dev|development) sudo apt-get install -y opentrigger-dev
+	prod|production|"") sudo apt-get install -y opentrigger
+	lite) sudo apt-get install -y opentrigger --no-install-recommends
 esac
