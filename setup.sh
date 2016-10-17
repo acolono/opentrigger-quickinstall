@@ -28,6 +28,7 @@ enablenodered (){
 }
 
 askforreboot (){
+	unset DEBIAN_FRONTEND
 	echo "Your raspberry has to be disconnected from the power source to finish installation."
 	read -p "Shutdown now (y/n)? " -n 1 -r
 	echo    # (optional) move to a new line
