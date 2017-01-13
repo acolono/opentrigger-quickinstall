@@ -25,6 +25,7 @@ aptinstall (){
 
 enablenodered (){
 	sudo systemctl enable nodered.service
+	sudo npm install coap-cli -g
 }
 
 shutitdown (){
