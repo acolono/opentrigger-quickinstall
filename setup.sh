@@ -26,6 +26,9 @@ aptinstall (){
 enablenodered (){
 	sudo systemctl enable nodered.service
 	sudo npm install coap-cli -g
+	mkdir -p "$HOME/.node-red/lib/flows/OpenTrigger/" && cd $_
+	wget -qO- https://github.com/piccaso/opentrigger-node-red-library/archive/master.tar.gz | tar zxf - --strip-components=1
+	find . -not -name '*.json' -delete
 }
 
 shutitdown (){
