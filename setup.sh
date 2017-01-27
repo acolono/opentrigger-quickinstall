@@ -4,8 +4,7 @@
 ## wget -qO- https://get.opentrigger.com/setup.sh | bash
 
 set -e
-
-export DEBIAN_FRONTEND=noninteractive
+set -x
 
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
