@@ -19,7 +19,7 @@ sudo apt-get update
 sudo apt-get -y dist-upgrade
 
 aptinstall (){
-	sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confnew" $*
+	sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y -o Dpkg::Options::="--force-confnew" $*
 }
 
 enablenodered (){
